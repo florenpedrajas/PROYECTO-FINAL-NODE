@@ -81,7 +81,7 @@ const teams = [
   
 },
 {
-  team: "Fraikin BM. Granollers",
+  name: "Fraikin BM. Granollers",
   img: "https://upload.wikimedia.org/wikipedia/en/6/6c/Granollers_handball_club.png",
  
 },
@@ -98,9 +98,9 @@ mongoose.connect(DB_URL)
     const allTeams = await Team.find().lean();
     
     if(!allTeams.length) {
-      console.log('[seed]: No se encuentran jugadores, continuo...')
+      console.log('[seed]: No se encuentran equipos, continuo...')
     } else {
-      console.log(`[seed]: Encontrados ${allTeams.length} jugadores.`);
+      console.log(`[seed]: Encontrados ${allTeams.length} equipos.`);
       await Team.collection.drop();
       console.log('[seed]: Colección Teams eliminada correctamente');
     }
@@ -108,7 +108,7 @@ mongoose.connect(DB_URL)
   .catch((error) => console.log('[seed]: Error eliminando la colección -->', error))
   .then(async() => {
     await Team.insertMany(teams);
-    console.log('[seed]: Nuevos jugadores añadidos con éxito');
+    console.log('[seed]: Nuevos equipos añadidos con éxito');
   })
-  .catch((error) => console.log('[seed]: Error añadiendo los jugadores', error))
+  .catch((error) => console.log('[seed]: Error añadiendo los equipos', error))
   .finally(() => mongoose.disconnect());

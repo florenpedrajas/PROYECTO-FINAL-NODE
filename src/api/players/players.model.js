@@ -6,7 +6,7 @@ const playersShema = new Schema( {
 
     name: {type: String, required: true, trim: true},  //trim quita estacios si lo ponemos por error con un espacio
     img:{type: String, required: true, trim: true},
-    team:{type: String, required: true, trim: true},
+    team:{type:mongoose.Types.ObjectId, ref:"teams"},
     age:{type: Number, required: true, trim: true},
     dorsal:{type: Number,  trim: true},
     position:{type: String, trim: true},

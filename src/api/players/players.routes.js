@@ -2,10 +2,12 @@ const express = require("express");
 const Player = require("./players.model");
 const router = express.Router();
 const { isAuth, isAdmin } = require('../../middlewares/auth');
+const upload = require("../../middlewares/file");
+
 
 router.get('/', async(req, res, next) => {
   try {
-    const allPlayers = await Player.find().populate('sports');
+    const allPlayers = await Player.find().populate('sports').populate("team");
     return res.status(200).json(allPlayers);
   } catch(error) {
     return next(error);
@@ -32,9 +34,12 @@ router.get('/getbyname/:name', async (req, res, next) => {
   }
 });
 
-router.post('/create', [isAuth], async (req, res, next) => {
+router.post('/create', [isAuth], upload.single("img"), async (req, res, next) => {
   try {
     const player = req.body;
+    if (req.file) {
+      player.img = req.file.path;
+    }
     const newPlayer = new Player(player);
     const created = await newPlayer.save();
     return res.status(201).json(created);

@@ -2,6 +2,7 @@ const express = require("express");
 const Team = require("./teams.model");
 const router = express.Router();
 const { isAuth, isAdmin } = require('../../middlewares/auth');
+const upload = require("../../middlewares/file");
 
 router.get('/', async(req, res, next) => {
   try {
@@ -32,9 +33,12 @@ router.get('/getbyname/:name', async (req, res, next) => {
   }
 });
 
-router.post('/create', [isAuth], async (req, res, next) => {
+router.post('/create', [isAuth], upload.single("img"), async (req, res, next) => {
   try {
     const team = req.body;
+    if (req.file) {
+      team.img = req.file.path;
+    }
     const newTeam = new Team(team);
     const created = await newTeam.save();
     return res.status(201).json(created);
