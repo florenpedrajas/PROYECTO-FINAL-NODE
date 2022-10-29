@@ -10,7 +10,7 @@ const players = [
     age: 25,
     dorsal: 19,
     position: "Mediocentro",
-    sports: "635d0aeebbef472a6ee106cb"
+    sports: "635d0b0953b923f2c8205f67"
   },
   {
     name: "Pedri González",
@@ -19,7 +19,7 @@ const players = [
     age: 19,
     dorsal: 21,
     position: "Mediocentro",
-    sports: "635d0aeebbef472a6ee106cb"
+    sports: "635d0b0953b923f2c8205f67"
 
   },
   {
@@ -29,7 +29,7 @@ const players = [
     age: 20,
     dorsal: 2,
     position: "Delantero",
-    sports: "635d0aeebbef472a6ee106cb"
+    sports: "635d0b0953b923f2c8205f67"
   },
   {
     name: "Borja Iglesias",
@@ -38,7 +38,7 @@ const players = [
     age: 29,
     dorsal: 3,
     position: "Delantero",
-    sports: "635d0aeebbef472a6ee106cb"
+    sports: "635d0b0953b923f2c8205f67"
   },
  
 {
@@ -48,7 +48,7 @@ const players = [
     age: 32,
     dorsal: 2,
     position: "Base",
-    sports: "635d0aeebbef472a6ee106cc"
+    sports: "635d0b0953b923f2c8205f68"
   },
   {
     name: "Rudy Fernandez",
@@ -57,7 +57,7 @@ const players = [
     age: 37,
     dorsal: 5,
     position: "Ala",
-    sports: "635d0aeebbef472a6ee106cc"
+    sports: "635d0b0953b923f2c8205f68"
   },
   {
     name: "Sebas Saiz",
@@ -66,7 +66,7 @@ const players = [
     age: 27,
     dorsal: 11,
     position: "AlaPivote",
-    sports: "635d0aeebbef472a6ee106cc"
+    sports: "635d0b0953b923f2c8205f68"
   },
   {
     name: "Willy Hernangómez",
@@ -75,7 +75,7 @@ const players = [
     age: 28,
     dorsal: 14,
     position: "Pivote",
-    sports: "635d0aeebbef472a6ee106cc"
+    sports: "635d0b0953b923f2c8205f68"
   },
 {
     name: "Rafa Nadal",
@@ -84,7 +84,7 @@ const players = [
     age: 30,
     Dorsal: 22,
     Position: "Delantero",
-    sports: "635d0aeebbef472a6ee106ce"
+    sports: "635d0b0953b923f2c8205f6a"
   },
   {
     name: "Pablo Sarabia",
@@ -93,7 +93,7 @@ const players = [
     age: 30,
     dorsal: 22,
     position: "Delantero",
-    sports: "635d0aeebbef472a6ee106ce"
+    sports: "635d0b0953b923f2c8205f6a"
   },
   {
     name: "Pablo Sarabia",
@@ -102,7 +102,7 @@ const players = [
     age: 30,
     dorsal: 22,
     position: "Delantero",
-    sports: "635d0aeebbef472a6ee106ce"
+    sports: "635d0b0953b923f2c8205f6a"
   },
   {
     name: "Pablo Sarabia",
@@ -111,7 +111,7 @@ const players = [
     age: 30,
     dorsal: 22,
     position: "Delantero",
-    sports: "635d0aeebbef472a6ee106ce"
+    sports: "635d0b0953b923f2c8205f6a"
   },
 
 {
@@ -121,7 +121,7 @@ const players = [
     age: 31,
     dorsal: 12,
     position: "Portero",
-    sports: "635d0aeebbef472a6ee106cd"
+    sports: "635d0b0953b923f2c8205f69"
   },
     {
     name: "Agustin Casado",
@@ -130,7 +130,7 @@ const players = [
     age: 25,
     dorsal: 25,
     position: "Central",
-    sports: "635d0aeebbef472a6ee106cd"
+    sports: "635d0b0953b923f2c8205f69"
   },
   {
     name: "Adrià Figueres",
@@ -139,7 +139,7 @@ const players = [
     age: 33,
     dorsal: 17,
     position: "Pivote",
-    sports: "635d0aeebbef472a6ee106cd"
+    sports: "635d0b0953b923f2c8205f69"
   },
   {
     name: "Antonio Garcia",
@@ -148,7 +148,7 @@ const players = [
     age: 37,
     dorsal: 27,
     position: "Lateral Izquierdo",
-    sports: "635d0aeebbef472a6ee106cd"
+    sports: "635d0b0953b923f2c8205f69"
   },
   
 
