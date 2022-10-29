@@ -3,6 +3,7 @@ const Player = require("./players.model");
 const router = express.Router();
 const { isAuth, isAdmin } = require("../../middlewares/auth");
 const upload = require("../../middlewares/file");
+const deleteFile = require("../../middlewares/deleteFile");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -50,6 +51,10 @@ router.post("/create", [isAuth], upload.single("img"), async (req, res, next) =>
 router.delete("/delete/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
+    const player = await Player.findById(id);
+    if (player.img) {
+      deleteFile(player.img);
+    }
     const playerToDelete = await Player.findByIdAndDelete(id);
     return res.status(200).json("Se ha conseguido borrar el jugador");
   } catch (error) {
@@ -61,6 +66,13 @@ router.put("/edit/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
     const player = req.body;
+    const playerOld = await Player.findById(id);
+    if (req.file) {
+      if (playerOld.img) {
+        deleteFile(playerOld.img);
+      }
+      team.img = req.file.path;
+    }
     const playerModify = new Player(player);
     playerModify._id = id;
     const playerUpdated = await Player.findByIdAndUpdate(id, playerModify);

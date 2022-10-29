@@ -3,6 +3,7 @@ const Team = require("./teams.model");
 const router = express.Router();
 const { isAuth, isAdmin } = require("../../middlewares/auth");
 const upload = require("../../middlewares/file");
+const deleteFile = require("../../middlewares/deleteFile");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -50,6 +51,10 @@ router.post("/create", [isAuth], upload.single("img"), async (req, res, next) =>
 router.delete("/delete/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
+    const team = await Team.findById(id);
+    if (team.img) {
+      deleteFile(team.img);
+    }
     const teamToDelete = await Team.findByIdAndDelete(id);
     return res.status(200).json("Se ha conseguido borrar el equipo");
   } catch (error) {
@@ -61,6 +66,13 @@ router.put("/edit/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
     const team = req.body;
+    const teamOld = await Team.findById(id);
+    if (req.file) {
+      if (teamOld.img) {
+        deleteFile(teamOld.img);
+      }
+      team.img = req.file.path;
+    }
     const teamModify = new Team(team);
     teamModify._id = id;
     const teamUpdated = await Team.findByIdAndUpdate(id, teamModify);
