@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 });
 
-router.post("/postNewUser", async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const user = req.body;
     const newUser = new User(user);
@@ -23,7 +23,7 @@ router.post("/postNewUser", async (req, res) => {
         const created = await newUser.save();
         return res.status(201).json(created);
     }else {
-        return res.status(500).json("Error admin")
+        return res.status(500).json("No puedes crear cuenta de admin")
     } 
   } catch (error) {
     return res.status(500).json("Error al crear el usuario");

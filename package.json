@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seedTeams":"node ./src/utils/seeds/teamsSeeds.js",
-    "seedPlayers":"node ./src/utils/seeds/playersSeeds.js",    
+    "reset1":"node ./src/utils/seeds/teamsSeeds.js",
+    "reset2":"node ./src/utils/seeds/sportsSeeds.js",
+    "reset3":"node ./src/utils/seeds/playersSeeds.js",    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

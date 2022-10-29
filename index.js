@@ -1,42 +1,34 @@
 const express = require("express");
-require("dotenv").config();
+const cloudinary = require("cloudinary").v2;
+const cors = require("cors");
 const db = require("./src/utils/database/db");
+require("dotenv").config();
+
 const indexRoutes = require("./src/api/index/index.routes");
-const cloudinary= require("cloudinary").v2;
 const playersRoutes = require("./src/api/players/players.routes");
 const teamsRoutes = require("./src/api/teams/teams.routes");
 const sportsRoutes = require("./src/api/sports/sports.routes");
 const usersRoutes = require("./src/api/users/users.routes");
-
-
-const cors = require("cors");
-
-
-
-
-
 
 db.connectDb();
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
-
-})
-
+  api_secret: process.env.API_SECRET,
+});
 
 const server = express();
 const PORT = 3000;
 
 server.use(
   cors({
-    origin: "",
+    origin: "*",
     credentials: true,
   })
 );
 
-server.use(express.json());
+server.use(express.json({limit: "5mb"}));
 server.use(express.urlencoded({ extended: false }));
 
 server.use("/", indexRoutes);
@@ -50,16 +42,9 @@ server.use("", (req, res) => {
 });
 
 server.use((error, req, res, next) => {
-  return res
-    .status(error.status || 500)
-    .json(error.message || "unexpected error");
+  return res.status(error.status || 500).json(error.message || "unexpected error");
 });
-
-
-
 
 server.listen(PORT, () => {
-  console.log(`Servidor a todo gas en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-
-

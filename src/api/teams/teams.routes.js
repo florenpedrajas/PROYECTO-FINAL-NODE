@@ -1,19 +1,19 @@
 const express = require("express");
 const Team = require("./teams.model");
 const router = express.Router();
-const { isAuth, isAdmin } = require('../../middlewares/auth');
+const { isAuth, isAdmin } = require("../../middlewares/auth");
 const upload = require("../../middlewares/file");
 
-router.get('/', async(req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const allTeams = await Team.find()
+    const allTeams = await Team.find();
     return res.status(200).json(allTeams);
-  } catch(error) {
+  } catch (error) {
     return next(error);
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
     const teamToFind = await Team.findById(id);
@@ -23,17 +23,17 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/getbyname/:name', async (req, res, next) => {
+router.get("/getbyname/:name", async (req, res, next) => {
   try {
     const name = req.params.name;
-    const teamToFind = await Team.findOne({name: name});
+    const teamToFind = await Team.findOne({ name: name });
     return res.status(200).json(teamToFind);
   } catch (error) {
     return next(error);
   }
 });
 
-router.post('/create', [isAuth], upload.single("img"), async (req, res, next) => {
+router.post("/create", [isAuth], upload.single("img"), async (req, res, next) => {
   try {
     const team = req.body;
     if (req.file) {
@@ -47,8 +47,7 @@ router.post('/create', [isAuth], upload.single("img"), async (req, res, next) =>
   }
 });
 
-router.delete('/delete/:id', [isAuth], async (req, res, next) => {
-
+router.delete("/delete/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
     const teamToDelete = await Team.findByIdAndDelete(id);
@@ -56,21 +55,19 @@ router.delete('/delete/:id', [isAuth], async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
-
 });
 
-router.put('/edit/:id', [isAuth], async (req, res, next) => {
+router.put("/edit/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
     const team = req.body;
     const teamModify = new Team(team);
     teamModify._id = id;
     const teamUpdated = await Team.findByIdAndUpdate(id, teamModify);
-    return res.status(200).json({mensaje: "Se ha conseguido editar el equipo", teamModificado: teamUpdated});
+    return res.status(200).json({ mensaje: "Se ha conseguido editar el equipo", teamModificado: teamUpdated });
   } catch (error) {
     return next(error);
   }
-})
-
+});
 
 module.exports = router;
