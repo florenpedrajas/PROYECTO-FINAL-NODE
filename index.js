@@ -4,7 +4,10 @@ const db = require("./src/utils/database/db");
 const indexRoutes = require("./src/api/index/index.routes");
 const cloudinary= require("cloudinary").v2;
 const playersRoutes = require("./src/api/players/players.routes");
+const teamsRoutes = require("./src/api/teams/teams.routes");
 const sportsRoutes = require("./src/api/sports/sports.routes");
+const usersRoutes = require("./src/api/users/users.routes");
+
 
 const cors = require("cors");
 
@@ -39,6 +42,8 @@ server.use(express.urlencoded({ extended: false }));
 server.use("/", indexRoutes);
 server.use("/players", playersRoutes);
 server.use("/sports", sportsRoutes);
+server.use("/teams", teamsRoutes);
+server.use("/users", usersRoutes);
 
 server.use("", (req, res) => {
   return res.status(404).json("Ruta no encontrada");

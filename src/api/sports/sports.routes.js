@@ -1,6 +1,7 @@
 const express = require("express");
 const Sport = require("./sports.model");
 const router = express.Router();
+const { isAuth, isAdmin } = require('../../middlewares/auth');
 
 router.get("/", async (req, res) => {
     try {
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
         return res.status(500).json("Error al leer los deportes");
     }
 })
-router.post("/postNewSport", async (req, res) => {
+router.post("/postNewSport", [isAuth], async (req, res) => {
   try {
     const sport = req.body;
     const newSport = new Sport(sport);
@@ -41,7 +42,7 @@ router.get('/getbyname/:name', async (req, res, next) => {
   }
 });
 
-router.delete('/delete/:id', async (req, res, next) => {
+router.delete('/delete/:id', [isAuth], async (req, res, next) => {
 
   try {
     const id = req.params.id;
@@ -53,7 +54,7 @@ router.delete('/delete/:id', async (req, res, next) => {
 
 });
 
-router.put('/edit/:id', async (req, res, next) => {
+router.put('/edit/:id', [isAuth], async (req, res, next) => {
   try {
     const id = req.params.id;
     const sport = req.body;
