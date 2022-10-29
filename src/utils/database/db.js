@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 
-if (!DB_URL) throw new Error('No se encuentra la URL a la base de datos');
+
 
 const connectDb = async () => {
+    console.log(DB_URL);
   try {
     const db = await mongoose.connect(DB_URL);
     const { name, host } = db.connection;

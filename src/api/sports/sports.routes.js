@@ -21,6 +21,6 @@ router.post("/postNewSport", async (req, res) => {
   }
 });
 
-module.exports = router;const express = require("express");
+module.exports = router;
 
 
