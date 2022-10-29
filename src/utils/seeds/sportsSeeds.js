@@ -1,7 +1,6 @@
 const { mongoose } = require("mongoose");
 const Sport = require('../../api/sports/sports.model');
-const { DB_URL } = require('../database/db');
-
+const DB_URL = "mongodb://localhost:27017/proyectoFinal";
 const sports = [
   {
     name: "Futbol",  //trim quita estacios si lo ponemos por error con un espacio

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const DB_URL = process.env.DB_URL;
 
 
 
@@ -15,5 +16,5 @@ const connectDb = async () => {
 };
 
 module.exports = {
-  connectDb
+  connectDb, DB_URL
 }

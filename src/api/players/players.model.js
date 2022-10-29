@@ -8,9 +8,10 @@ const playersShema = new Schema( {
     img:{type: String, required: true, trim: true},
     team:{type: String, required: true, trim: true},
     age:{type: Number, required: true, trim: true},
-    dorsal:{type: Number, required: true, trim: true},
-    Position:{type: String, required: true, trim: true},
-    
+    dorsal:{type: Number,  trim: true},
+    position:{type: String, trim: true},
+    sports: {type:mongoose.Types.ObjectId, ref:"sports"},
+
 },
 
 

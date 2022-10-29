@@ -5,8 +5,9 @@ const indexRoutes = require("./src/api/index/index.routes");
 const cloudinary= require("cloudinary").v2;
 const playersRoutes = require("./src/api/players/players.routes");
 const sportsRoutes = require("./src/api/sports/sports.routes");
-const DB_URL = process.env.DB_URL;
+
 const cors = require("cors");
+
 
 
 
@@ -55,4 +56,5 @@ server.use((error, req, res, next) => {
 server.listen(PORT, () => {
   console.log(`Servidor a todo gas en http://localhost:${PORT}`);
 });
+
 
