@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-const generateSingn = (id, email) => {
+const generateSign = (id, email) => {
+  return jwt.sign({ id, email }, process.env.JWT_SECRET, { expiresIn: "7d" });
+};
+const verifyJwt = (token) => {
+  return jwt.verify(token, process.env.JWT_SECRET);
+};
 
-return jwt.sign({id, email}, process.env.JWT_SECRET, {expiresIn: "7d"});
-}
-    const verifyJwt = (token)  => {
-        return jwt.verify(token, process.env.JWT_SECRET);
-    }
-
-    module.exports = { generateSingn, verifyJwt }
+module.exports = { generateSign, verifyJwt };
