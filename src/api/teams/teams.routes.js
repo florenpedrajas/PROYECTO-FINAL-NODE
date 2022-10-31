@@ -56,13 +56,13 @@ router.delete("/delete/:id", [isAdmin], async (req, res, next) => {
       deleteFile(team.img);
     }
     const teamToDelete = await Team.findByIdAndDelete(id);
-    return res.status(200).json("Se ha conseguido borrar el equipo");
+    return res.status(200).json(`Se ha conseguido borrar el equipo ${teamToDelete}`);
   } catch (error) {
     return next(error);
   }
 });
 
-router.put("/edit/:id", [isAdmin], async (req, res, next) => {
+router.put("/edit/:id", [isAdmin], upload.single("img"), async (req, res, next) => {
   try {
     const id = req.params.id;
     const team = req.body;

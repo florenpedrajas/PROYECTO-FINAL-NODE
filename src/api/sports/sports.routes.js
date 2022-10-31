@@ -47,7 +47,7 @@ router.delete("/delete/:id", [isAdmin], async (req, res, next) => {
   try {
     const id = req.params.id;
     const sportToDelete = await Sport.findByIdAndDelete(id);
-    return res.status(200).json("Se ha conseguido borrar el deporte");
+    return res.status(200).json(`Se ha conseguido borrar el deporte ${sportToDelete}`);
   } catch (error) {
     return next(error);
   }
