@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("./users.model");
 const router = express.Router();
+const { isAuth, isAdmin } = require("../../middlewares/auth");
 const bcrypt = require("bcrypt");
 const { generateSign } = require("../../utils/jwt/jwt");
 
