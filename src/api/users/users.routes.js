@@ -15,21 +15,6 @@ router.get("/", async (req, res) => {
 
 });
 
-router.post("/create", async (req, res) => {
-  try {
-    const user = req.body;
-    const newUser = new User(user);
-    if (newUser.rol === "user") {
-        const created = await newUser.save();
-        return res.status(201).json(created);
-    }else {
-        return res.status(500).json("No puedes crear cuenta de admin")
-    } 
-  } catch (error) {
-    return res.status(500).json("Error al crear el usuario");
-  }
-});
-
 router.post("/login", async (req, res) => {
 
     try {
@@ -59,5 +44,43 @@ router.post("/logout", async (req, res) => {
     }
 
 });
+
+router.post("/create", async (req, res) => {
+    try {
+      const user = req.body;
+      const newUser = new User(user);
+      if (newUser.rol === "user") {
+          const created = await newUser.save();
+          return res.status(201).json(created);
+      }else {
+          return res.status(500).json("No puedes crear cuenta de admin")
+      } 
+    } catch (error) {
+      return res.status(500).json("Error al crear el usuario");
+    }
+  });
+
+  router.delete("/delete/:id", [isAdmin], async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const userToDelete = await User.findByIdAndDelete(id);
+      return res.status(200).json("Se ha conseguido borrar el usuario");
+    } catch (error) {
+      return next(error);
+    }
+  });
+  
+  router.put("/edit/:id", [isAdmin], async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const user = req.body;
+      const userModify = new User(user);
+      userModify._id = id;
+      await User.findByIdAndUpdate(id, userModify);
+      return res.status(200).json("Se ha conseguido editar el usuario");
+    } catch (error) {
+      return next(error);
+    }
+  });
 
 module.exports = router;
